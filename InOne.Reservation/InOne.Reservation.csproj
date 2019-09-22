@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InOne.Reservation.Repository\InOne.Reservation.Repository.csproj">
+      <Project>{98c96e91-7744-4f36-b75b-bdbba9f1f675}</Project>
+      <Name>InOne.Reservation.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

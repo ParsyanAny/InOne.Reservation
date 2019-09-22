@@ -13,6 +13,7 @@ namespace InOne.Reservation.Repository
         public DbSet<User> Users { get; set; }
         public DbSet<UserBooking> UserBookings { get; set; }
 
+        //public ApplicationContext() : base("ConString") { }
         public ApplicationContext() : base(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = ReservationDB; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False") { }
     }
 }

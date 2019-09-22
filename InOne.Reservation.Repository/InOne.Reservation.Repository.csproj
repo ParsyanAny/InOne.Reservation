@@ -52,6 +52,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="Interfaces\IBaseRepository.cs" />
+    <Compile Include="Interfaces\IBookingRepository.cs" />
+    <Compile Include="Interfaces\IFurnitureRepository.cs" />
+    <Compile Include="Interfaces\IRoomRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="Interfaces\IUserRepository.cs" />
+    <Compile Include="Migrations\201909221224331_FirstMigration.cs" />
+    <Compile Include="Migrations\201909221224331_FirstMigration.Designer.cs">
+      <DependentUpon>201909221224331_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\BookingFurniture.cs" />
     <Compile Include="Models\Furniture.cs" />
@@ -60,10 +71,21 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserBooking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\BookingRepository.cs" />
+    <Compile Include="Repositories\FurnitureRepository.cs" />
+    <Compile Include="Repositories\RoomRepository.cs" />
+    <Compile Include="Repositories\UnitOfWork.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201909221224331_FirstMigration.resx">
+      <DependentUpon>201909221224331_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
