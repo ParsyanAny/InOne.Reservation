@@ -12,9 +12,7 @@ namespace InOne.Reservation.Tester
             Console.WriteLine("ID\tTypename - Price\n");
             Console.ForegroundColor = ConsoleColor.Cyan;
             foreach (var item in furniture)
-            {
                 Console.WriteLine($"{item.FurnitureId}\t{item.TypeName} - {item.Price}$");
-            }
             Console.ResetColor();
         }
         public static void PrintUsers(this IEnumerable<User> users)
@@ -29,7 +27,7 @@ namespace InOne.Reservation.Tester
         public static void PrintRooms(this IEnumerable<Room> rooms)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("ID\tNumber\tPrice\tParentRoom Id");
+            Console.WriteLine("ID\tNumber\tPrice\tParentRoom ID");
             Console.ForegroundColor = ConsoleColor.Cyan;
             foreach (var item in rooms)
             {
@@ -37,37 +35,42 @@ namespace InOne.Reservation.Tester
             }
             Console.ResetColor();
         }
+
         public static void PrintBookings(this IEnumerable<Booking> reservations)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("ID\tUserID\tRoomID");
+            Console.WriteLine("ID\tCustomer\tRoom\tPrice\tTime");
             Console.ForegroundColor = ConsoleColor.Cyan;
             foreach (var item in reservations)
-            {
-                Console.WriteLine($"{item.BookingId}\t{item.UserId}\t{item.RoomId}");
-            }
+                Console.WriteLine($"{item.BookingId}\t{item.User.FullName}\t{item.Room.Number}\t{item.Room.Price}$\t{item.StartTime} - {item.EndTime}, {item.Time1}-{item.Time2}");
             Console.ResetColor();
         }
+
         public static void PrintBookingFurnitures(this IEnumerable<BookingFurniture> resfurs)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("FurnitureID BookingID FurnitureCount");
+            Console.WriteLine("Booking Furniture FurnitureCount");
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             foreach (var item in resfurs)
-            {
-                Console.WriteLine($"{item.FurnitureId}\t    {item.BookingId}\t\t  {item.Count}");
-            }
+                Console.WriteLine($"{item.Booking.BookingId}\t    {item.Furniture.TypeName}\t\t  {item.Count}");
             Console.ResetColor();
         }
         public static void PrintRoomFurnitures(this IEnumerable<RoomFurniture> roomfurs)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("ID\tRoomID   FurnitureID    Count");
+            Console.WriteLine("ID\tRoomNumber   Furniture    Count");
             Console.ForegroundColor = ConsoleColor.Cyan;
             foreach (var item in roomfurs)
-            {
-                Console.WriteLine($"{item.RoomId}\t{item.FurnitureId}\t\t{item.Count}");
-            }
+                Console.WriteLine($"{item.Room.Number}\t{item.Furniture.TypeName}\t\t{item.Count}");
+            Console.ResetColor();
+        }
+        public static void PrintUserBooking(this IEnumerable<UserBooking> userBookings)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Id\tCustomer\tRoom\tFullPrice");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            foreach (var item in userBookings)
+                Console.WriteLine($"{item.Id}\t{item.User.FullName}\t{item.Booking.Room.Number}\t{item.Booking.FullPrice}");
             Console.ResetColor();
         }
     }

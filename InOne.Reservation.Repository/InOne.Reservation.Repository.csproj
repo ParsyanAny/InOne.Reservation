@@ -74,6 +74,7 @@
     <Compile Include="Models\RoomFurniture.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserBooking.cs" />
+    <Compile Include="PartialModels\Booking.cs" />
     <Compile Include="PartialModels\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />

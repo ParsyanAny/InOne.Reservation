@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InOne.Reservation.Repository.Models
 {
-    public class Booking
+    public partial class Booking
     {
         [Key]
         public int BookingId { get; set; }
