@@ -3,7 +3,7 @@ using System.Data.Entity;
 
 namespace InOne.Reservation.Repository
 {
-    class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext
     {
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<BookingFurniture> BookingFurnitures { get; set; }
@@ -15,5 +15,9 @@ namespace InOne.Reservation.Repository
 
         //public ApplicationContext() : base("ConString") { }
         public ApplicationContext() : base(@"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = ReservationDB; Integrated Security = True; Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False") { }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+        }
     }
 }

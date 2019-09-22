@@ -14,7 +14,7 @@ namespace InOne.Reservation.Repository.Models
         [MaxLength(70)]
         [Required]
         public string Surname { get; set; }
-        public DateTime? BirthayYear { get; set; }
+        public DateTime? BirthYear { get; set; }
 
         public ICollection<UserBooking> UserBookings { get; set; }
     }

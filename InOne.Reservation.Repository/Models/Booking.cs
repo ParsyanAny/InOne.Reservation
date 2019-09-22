@@ -26,10 +26,5 @@ namespace InOne.Reservation.Repository.Models
 
         public ICollection<BookingFurniture> BookingFurnitures { get; set; }
         public ICollection<UserBooking> UserBookings { get; set; }
-
-        //public Booking()
-        //{
-        //    BookingFurnitures = new HashSet<BookingFurniture>();
-        //}
     }
 }
