@@ -47,14 +47,14 @@ namespace InOne.Reservation.Tester
         }
         private static Booking CreateBooking(this Booking reservation)
         {
-            reservation.RoomId = rand.Next(0, 500);
-            reservation.UserId = rand.Next(0, 49);
+            reservation.RoomId = rand.Next(1005, 1200);
+            reservation.UserId = rand.Next(1, 49);
             reservation.StartTime = MyTime.TimeSpans[rand.Next(0, 23)];
             reservation.EndTime = MyTime.TimeSpans[rand.Next(0, 23)];
             if (reservation.RoomId % 3 == 0)
             {
-                reservation.Time1 = Convert.ToDateTime(reservation.StartTime.Minutes + rand.Next(0,59));
-                reservation.Time2 = Convert.ToDateTime(reservation.EndTime.Minutes - rand.Next(0,10));
+                reservation.Time1 = reservation.StartTime + new TimeSpan(0,rand.Next(2,50),0);
+                reservation.Time2 = reservation.Time1 + new TimeSpan(0,rand.Next(2,25),0);
             }
             return reservation;
         }
@@ -71,7 +71,7 @@ namespace InOne.Reservation.Tester
         private static BookingFurniture CreateBookingFurniture(this BookingFurniture resfur)
         {
             resfur.FurnitureId = rand.Next(1, 19);
-            resfur.BookingId = rand.Next(0, 50);
+            resfur.BookingId = rand.Next(5, 50);
             resfur.Count = rand.Next(1, 10);
             return resfur;
         }
@@ -86,8 +86,8 @@ namespace InOne.Reservation.Tester
         }
         private static UserBooking CreateUserBooking(this UserBooking userFur)
         {
-            userFur.UserId = rand.Next(0,500);
-            userFur.BookingId = rand.Next(0,50);
+            userFur.UserId = rand.Next(1002,1050);
+            userFur.BookingId = rand.Next(5,56);
             return userFur;
         }
         public static void AddRandomUserBookings(this ApplicationContext context, int count)
@@ -101,7 +101,7 @@ namespace InOne.Reservation.Tester
         }
         private static RoomFurniture CreateRoomFurniture(this RoomFurniture roomfur)
         {
-            roomfur.RoomId = rand.Next(0, 500);
+            roomfur.RoomId = rand.Next(1005, 1200);
             roomfur.FurnitureId = rand.Next(1, 19);
             roomfur.Count = rand.Next(0, 10);
             return roomfur;

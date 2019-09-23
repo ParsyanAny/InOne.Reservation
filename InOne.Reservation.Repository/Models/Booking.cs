@@ -13,8 +13,8 @@ namespace InOne.Reservation.Repository.Models
         public TimeSpan StartTime { get; set; }
         [Required]
         public TimeSpan EndTime { get; set; }
-        public DateTime? Time1 { get; set; }
-        public DateTime? Time2 { get; set; }
+        public TimeSpan? Time1 { get; set; }
+        public TimeSpan? Time2 { get; set; }
 
         [ForeignKey("Room")]
         public int RoomId { get; set; }

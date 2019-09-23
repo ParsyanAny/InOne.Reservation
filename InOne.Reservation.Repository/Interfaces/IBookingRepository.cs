@@ -2,5 +2,8 @@
 
 namespace InOne.Reservation.Repository.Interfaces
 {
-    public interface IBookingRepository : IBaseRepository<Booking> { }
+    public interface IBookingRepository : IBaseRepository<Booking>
+    {
+        void DeleteAllBookings(ApplicationContext context);
+    }
 }

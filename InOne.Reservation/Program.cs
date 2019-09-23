@@ -10,13 +10,48 @@ namespace InOne.Reservation
     {
         static void Main(string[] args)
         {
-            ApplicationContext app = new ApplicationContext();
-            //app.AddRandomRooms(50);
-            //app.Furnitures.Add(new Furniture {TypeName = "Table", Price = 10 });
-            //app.Rooms.Add(new Room { Number = 1, Price = 10, IsEmpty = true });
-            //app.RoomFurnitures.Add(new RoomFurniture { FurnitureId = 1, RoomId = 1, Count = 2});
-            //app.Furnitures.ToArray().PrintFurnitures();
-            app.Rooms.ToArray().PrintRooms();
+            ApplicationContext context = new ApplicationContext();
+
+            #region Booking Test +
+            //context.AddRandomBooking(50);
+            //context.SaveChanges();
+            //context.PrintBookings();
+            #endregion
+
+            #region BookingFurniture Test +
+            //context.AddRandomBookingFurnitures(10);
+            //context.SaveChanges();
+            //context.PrintBookingFurnitures();
+            #endregion
+
+            #region Furniture Test +
+            //context.PrintFurnitures();
+            #endregion
+
+            #region Room Test +
+            //context.AddRandomRooms(100);
+            //context.SaveChanges();
+            //context.PrintRooms();
+            #endregion
+
+            #region RoomFurniture Test +
+            //context.AddRandomRoomFurnitures(10);
+            //context.SaveChanges();
+            //context.PrintRoomFurnitures();
+            #endregion
+
+            #region User Test +
+            //context.AddRandomUsers(50);
+            //context.SaveChanges();
+            //context.PrintUsers();
+            #endregion
+
+            #region UserBooking Test +
+            //context.AddRandomUserBookings(20);
+            //context.SaveChanges();
+            //context.PrintUserBooking();
+            #endregion
+
             Console.Read();
         }
     }
