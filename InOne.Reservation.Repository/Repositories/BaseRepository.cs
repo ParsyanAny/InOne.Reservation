@@ -48,5 +48,7 @@ namespace InOne.Reservation.Repository.Repositories
         public void SaveChanges() => _context.SaveChanges();
         public Task SaveChangesAsync()
             => _context.SaveChangesAsync();
+
+        
     }
 }

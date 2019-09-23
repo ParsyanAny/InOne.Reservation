@@ -1,5 +1,7 @@
 ﻿using InOne.Reservation.Repository;
+using InOne.Reservation.Repository.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace InOne.Reservation.Tester
@@ -8,31 +10,28 @@ namespace InOne.Reservation.Tester
     {
         public static void PrintFurnitures(this ApplicationContext context)
         {
-            var furnitures = context.Furnitures.ToArray();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("ID\tName - Price\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            foreach (var item in furnitures)
+            foreach (var item in context.Furnitures)
                 Console.WriteLine($"{item.FurnitureId}\t{item.TypeName} - {item.Price}$");
             Console.ResetColor();
         }
         public static void PrintUsers(this ApplicationContext context)
         {
-            var users = context.Users.ToArray();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("ID\tFullname \t\tAge\n");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            foreach (var item in users)
-                Console.WriteLine($"{item.Id} \t{item.FullName}    \t\t{item.Adult} ({item.Age})");
+            foreach (var item in context.Users)
+                Console.WriteLine($"{item.Id} \t{item.FullName}    \t{item.Adult}");
             Console.ResetColor();
         }
         public static void PrintRooms(this ApplicationContext context)
         {
-            var rooms = context.Rooms.ToArray();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("ID\tNumber\tPrice\tParentRoom ID\n");
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            foreach (var item in rooms)
+            foreach (var item in context.Rooms)
                 Console.WriteLine($"{item.Id}\t{item.Number}\t{item.Price}$\t{item.ParentRoomId}");
             Console.ResetColor();
         }
@@ -116,6 +115,15 @@ namespace InOne.Reservation.Tester
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             foreach (var item in userBooking)
                 Console.WriteLine($"{item.BookingId}\t\t{item.UserName} {item.UserSurname}    \t{item.StartTime.Hours}.00 - {item.EndTime.Hours}.00");
+            Console.ResetColor();
+        }
+        public static void PrintUsers(this IEnumerable<User> users)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("ID\tFullname \t\tAge\n");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            foreach (var item in users)
+                Console.WriteLine($"{item.Id} \t{item.FullName}    \t{item.Adult}");
             Console.ResetColor();
         }
     }

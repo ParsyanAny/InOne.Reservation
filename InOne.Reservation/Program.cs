@@ -1,6 +1,8 @@
 ﻿using InOne.Reservation.Repository;
+using InOne.Reservation.Repository.Interfaces;
 using InOne.Reservation.Repository.Models;
 using InOne.Reservation.Tester;
+using Mic.EFC.Repository.Impl;
 using System;
 using System.Linq;
 
@@ -11,11 +13,11 @@ namespace InOne.Reservation
         static void Main(string[] args)
         {
             ApplicationContext context = new ApplicationContext();
-
+            IUnitOfWork unit = new UnitOfWork(context);
             #region Booking Test +
             //context.AddRandomBooking(50);
             //context.SaveChanges();
-            //context.PrintBookings();
+            context.PrintBookings();
             #endregion
 
             #region BookingFurniture Test +
@@ -41,8 +43,20 @@ namespace InOne.Reservation
             #endregion
 
             #region User Test +
-            //context.AddRandomUsers(50);
+            //context.AddRandomUsers(5);
             //context.SaveChanges();
+            //var users = unit.UserRepository.GetUsersWithChar('E');
+            //context.PrintUsers();
+
+            //User user = new User { Name = "Any", Surname = "Parsyan", BirthYear = new DateTime(2000, 2, 2)};
+            //unit.UserRepository.AddUser(user);
+            //unit.Commit();
+            //unit.UserRepository.AddUser(user);
+            //var users = context.Users.ToArray();
+            //unit.UserRepository.DeleteById(2014);
+            //unit.Commit();
+            //unit.UserRepository.ChangeName("Antonio", "Marcus", 2008);
+            //unit.Commit();
             //context.PrintUsers();
             #endregion
 

@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201909230922334_3Migration.Designer.cs">
       <DependentUpon>201909230922334_3Migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909231311076_4Migration.cs" />
+    <Compile Include="Migrations\201909231311076_4Migration.Designer.cs">
+      <DependentUpon>201909231311076_4Migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\BookingFurniture.cs" />
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909230922334_3Migration.resx">
       <DependentUpon>201909230922334_3Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909231311076_4Migration.resx">
+      <DependentUpon>201909231311076_4Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
