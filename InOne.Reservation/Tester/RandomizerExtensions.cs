@@ -15,6 +15,10 @@ namespace InOne.Reservation.Tester
             user.Name = $"{(Names)rand.Next(0, Enum.GetValues(typeof(Names)).Cast<Names>().Distinct().Count())}";
             user.Surname = $"{(Surnames)rand.Next(0, Enum.GetValues(typeof(Surnames)).Cast<Surnames>().Distinct().Count())}";
             user.BirthYear = new DateTime(rand.Next(1920, 2010), rand.Next(1, 12), rand.Next(1, 28));
+            user.Balance = Convert.ToDecimal(rand.Next(0,50000)/3);
+            int login = rand.Next(0, 500);
+            user.UserName = $"UserName{login}";
+            user.Password = $"Password{login}";
             return user;
         }
         public static void AddRandomUsers(this ApplicationContext context, int count)
@@ -33,7 +37,7 @@ namespace InOne.Reservation.Tester
             room.Number = rand.Next(1, 500);
             room.Price = rand.Next(20, 1500) / 3;
             room.IsEmpty = room.Number % 3 + 1 == 0 ? true : false;
-            room.ParentRoom = room.Number % 5 == 0 ? context.Rooms.First(p => p.Id % rn == 0) : null;
+            room.ParentRoom = room.Number % 12 == 0 ? context.Rooms.First(p => p.Id % rn == 0) : null;
             room.ParentRoomId = room.ParentRoom?.Id;
             return room;
         }
@@ -47,8 +51,8 @@ namespace InOne.Reservation.Tester
         }
         private static Booking CreateBooking(this Booking reservation)
         {
-            reservation.RoomId = rand.Next(1005, 1200);
-            reservation.UserId = rand.Next(1, 49);
+            reservation.RoomId = rand.Next(0, 70);
+            reservation.UserId = rand.Next(104, 200);
             reservation.StartTime = MyTime.TimeSpans[rand.Next(0, 23)];
             reservation.EndTime = MyTime.TimeSpans[rand.Next(0, 23)];
             if (reservation.RoomId % 3 == 0)
@@ -67,7 +71,6 @@ namespace InOne.Reservation.Tester
                 count--;
             }
         }
-
         private static BookingFurniture CreateBookingFurniture(this BookingFurniture resfur)
         {
             resfur.FurnitureId = rand.Next(1, 19);
@@ -86,8 +89,8 @@ namespace InOne.Reservation.Tester
         }
         private static UserBooking CreateUserBooking(this UserBooking userFur)
         {
-            userFur.UserId = rand.Next(1002,1050);
-            userFur.BookingId = rand.Next(5,56);
+            userFur.UserId = rand.Next(104,200);
+            userFur.BookingId = rand.Next(100,150);
             return userFur;
         }
         public static void AddRandomUserBookings(this ApplicationContext context, int count)
@@ -101,7 +104,7 @@ namespace InOne.Reservation.Tester
         }
         private static RoomFurniture CreateRoomFurniture(this RoomFurniture roomfur)
         {
-            roomfur.RoomId = rand.Next(1005, 1200);
+            roomfur.RoomId = rand.Next(1, 100);
             roomfur.FurnitureId = rand.Next(1, 19);
             roomfur.Count = rand.Next(0, 10);
             return roomfur;

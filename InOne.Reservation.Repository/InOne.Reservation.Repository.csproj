@@ -74,14 +74,25 @@
     <Compile Include="Migrations\201909231311076_4Migration.Designer.cs">
       <DependentUpon>201909231311076_4Migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909291020270_addBalance.cs" />
+    <Compile Include="Migrations\201909291020270_addBalance.Designer.cs">
+      <DependentUpon>201909291020270_addBalance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909300655108_AddUserColumns.cs" />
+    <Compile Include="Migrations\201909300655108_AddUserColumns.Designer.cs">
+      <DependentUpon>201909300655108_AddUserColumns.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\BookingFurniture.cs" />
+    <Compile Include="Models\BookingModel.cs" />
     <Compile Include="Models\Furniture.cs" />
     <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\RoomFurCost.cs" />
     <Compile Include="Models\RoomFurniture.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserBooking.cs" />
+    <Compile Include="Models\UserRoomBook.cs" />
     <Compile Include="PartialModels\Booking.cs" />
     <Compile Include="PartialModels\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909231311076_4Migration.resx">
       <DependentUpon>201909231311076_4Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909291020270_addBalance.resx">
+      <DependentUpon>201909291020270_addBalance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909300655108_AddUserColumns.resx">
+      <DependentUpon>201909300655108_AddUserColumns.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

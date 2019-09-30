@@ -21,17 +21,30 @@ namespace InOne.Reservation.Repository.Repositories
 
         public void ChangeName(string Name, string Surname, int id)
         {
-                var result = _context.Set<User>().SingleOrDefault(b => b.Id == id);
+                var result = _context.Set<User>().SingleOrDefault(user => user.Id == id);
                 if (result != null)
                 {
                     result.Name = Name;
                     result.Surname = Surname;
                 }
         }
-
-        public void DeleteAllUsers(ApplicationContext context)
-        => context.Users.RemoveRange(context.Users.AsQueryable());
-
+        public void ChangeLogin(string UserName, string Password, int id)
+        {
+            var result = _context.Set<User>().SingleOrDefault(user => user.Id == id);
+            if (result != null)
+            {
+                result.UserName = UserName;
+                result.Password = Password;
+            }
+        }
+        public void ChangeBalance(decimal Balance, int id)
+        {
+            var result = _context.Set<User>().SingleOrDefault(user=> user.Id == id);
+            if (result != null)
+                result.Balance = Balance;
+        }
+        public void DeleteAllUsers()
+        => _context.Set<User>().RemoveRange(_context.Set<User>().AsQueryable());
         public IEnumerable<User> GetUsersWithChar(char firstInitial)
         {
             string ini = firstInitial.ToString();
