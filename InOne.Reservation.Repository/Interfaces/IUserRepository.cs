@@ -1,4 +1,4 @@
-﻿using InOne.Reservation.Repository.Models;
+﻿using InOne.Reservation.Models;
 using System.Collections.Generic;
 
 namespace InOne.Reservation.Repository.Interfaces

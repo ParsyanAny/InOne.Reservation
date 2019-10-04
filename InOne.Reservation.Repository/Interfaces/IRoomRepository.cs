@@ -1,4 +1,4 @@
-﻿using InOne.Reservation.Repository.Models;
+﻿using InOne.Reservation.Models;
 
 namespace InOne.Reservation.Repository.Interfaces
 {
@@ -6,5 +6,6 @@ namespace InOne.Reservation.Repository.Interfaces
     {
         void DeleteAllRooms();
         double GetCost(int roomID);
+        Room GetByNumber(int number);
     }
 }

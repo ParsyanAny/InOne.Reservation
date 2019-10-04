@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79FA00C1-C900-47D9-B204-29ABD6EE0883}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>InOne.Reservation</RootNamespace>
-    <AssemblyName>InOne.Reservation</AssemblyName>
+    <ProjectGuid>{F4800A40-382E-4BDE-A2AE-FFDA25F9DBD2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>InOne.Reservation.Models</RootNamespace>
+    <AssemblyName>InOne.Reservation.Models</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,15 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.7.0\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,30 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="DBModels\Booking.cs" />
+    <Compile Include="DBModels\BookingFurniture.cs" />
+    <Compile Include="DBModels\Furniture.cs" />
+    <Compile Include="DBModels\Room.cs" />
+    <Compile Include="DBModels\RoomFurniture.cs" />
+    <Compile Include="DBModels\User.cs" />
+    <Compile Include="DBModels\UserBooking.cs" />
+    <Compile Include="PartialModels\Booking.cs" />
+    <Compile Include="PartialModels\User.cs" />
+    <Compile Include="ProjectModels\BookingModel.cs" />
+    <Compile Include="ProjectModels\RoomFurCost.cs" />
+    <Compile Include="ProjectModels\UserRoomBook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tester\Enums.cs" />
-    <Compile Include="Tester\MyTime.cs" />
-    <Compile Include="Tester\PrintExtensions.cs" />
-    <Compile Include="Tester\RandomizerExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\InOne.Reservation.DataAccess\InOne.Reservation.DataAccess.csproj">
-      <Project>{FEE03212-4B05-4C27-8897-0AECFA05C4A5}</Project>
-      <Name>InOne.Reservation.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\InOne.Reservation.Models\InOne.Reservation.Models.csproj">
-      <Project>{f4800a40-382e-4bde-a2ae-ffda25f9dbd2}</Project>
-      <Name>InOne.Reservation.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\InOne.Reservation.Repository\InOne.Reservation.Repository.csproj">
-      <Project>{98c96e91-7744-4f36-b75b-bdbba9f1f675}</Project>
-      <Name>InOne.Reservation.Repository</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

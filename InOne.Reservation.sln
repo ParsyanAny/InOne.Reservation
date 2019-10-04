@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InOne.Reservation", "InOne.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InOne.Reservation.Repository", "InOne.Reservation.Repository\InOne.Reservation.Repository.csproj", "{98C96E91-7744-4F36-B75B-BDBBA9F1F675}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InOne.Reservation.Models", "InOne.Reservation.Models\InOne.Reservation.Models.csproj", "{F4800A40-382E-4BDE-A2AE-FFDA25F9DBD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InOne.Reservation.DataAccess", "InOne.Reservation.DataAccess\InOne.Reservation.DataAccess.csproj", "{FEE03212-4B05-4C27-8897-0AECFA05C4A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{98C96E91-7744-4F36-B75B-BDBBA9F1F675}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98C96E91-7744-4F36-B75B-BDBBA9F1F675}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98C96E91-7744-4F36-B75B-BDBBA9F1F675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4800A40-382E-4BDE-A2AE-FFDA25F9DBD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4800A40-382E-4BDE-A2AE-FFDA25F9DBD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4800A40-382E-4BDE-A2AE-FFDA25F9DBD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4800A40-382E-4BDE-A2AE-FFDA25F9DBD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEE03212-4B05-4C27-8897-0AECFA05C4A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEE03212-4B05-4C27-8897-0AECFA05C4A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEE03212-4B05-4C27-8897-0AECFA05C4A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEE03212-4B05-4C27-8897-0AECFA05C4A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

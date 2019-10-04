@@ -1,5 +1,5 @@
-﻿using InOne.Reservation.Repository;
-using InOne.Reservation.Repository.Models;
+﻿using InOne.Reservation.DataAccess;
+using InOne.Reservation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

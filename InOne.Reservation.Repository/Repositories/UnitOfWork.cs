@@ -3,19 +3,19 @@ using System.Linq;
 using System.Data.Entity;
 using System.Collections.Generic;
 using InOne.Reservation.Repository.Interfaces;
-using InOne.Reservation.Repository.Repositories;
+using InOne.Reservation.DataAccess;
 
-namespace Mic.EFC.Repository.Impl
+namespace InOne.Reservation.Repository.Repositories
 {
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
-        private readonly DbContext _dbContext;
+        private readonly ApplicationContext _context;
         private bool disposed;
         private readonly Dictionary<string, object> repositories;
 
-        public UnitOfWork(DbContext _dbContext)
+        public UnitOfWork(ApplicationContext _dbContext)
         {
-            this._dbContext = _dbContext;
+            this._context = _dbContext;
             repositories = new Dictionary<string, object>();
         }
 
@@ -29,7 +29,7 @@ namespace Mic.EFC.Repository.Impl
             var type = typeof(TRepository);
             if (!repositories.ContainsKey(type.Name))
             {
-                var obj = Activator.CreateInstance(type, _dbContext);
+                var obj = Activator.CreateInstance(type, _context);
                 repositories.Add(type.Name, obj);
             }
             return (TRepository)repositories[type.Name];
@@ -37,11 +37,11 @@ namespace Mic.EFC.Repository.Impl
 
         public void Commit()
         {
-            _dbContext.SaveChanges();
+            _context.SaveChanges();
         }
         public void RejectChanges()
         {
-            foreach (var entry in _dbContext.ChangeTracker.Entries()
+            foreach (var entry in _context.ChangeTracker.Entries()
                   .Where(e => e.State != EntityState.Unchanged))
             {
                 switch (entry.State)
@@ -66,7 +66,7 @@ namespace Mic.EFC.Repository.Impl
             if (!disposed)
             {
                 if (disposing)
-                    _dbContext.Dispose();
+                    _context.Dispose();
             }
             disposed = true;
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using InOne.Reservation.Repository;
-using InOne.Reservation.Repository.Models;
+using InOne.Reservation.DataAccess;
+using InOne.Reservation.Models;
 using static InOne.Reservation.Tester.Enums;
 
 namespace InOne.Reservation.Tester
@@ -51,8 +51,8 @@ namespace InOne.Reservation.Tester
         }
         private static Booking CreateBooking(this Booking reservation)
         {
-            reservation.RoomId = rand.Next(0, 70);
-            reservation.UserId = rand.Next(104, 200);
+            reservation.RoomId = rand.Next(1, 99);
+            reservation.UserId = rand.Next(1, 99);
             reservation.StartTime = MyTime.TimeSpans[rand.Next(0, 23)];
             reservation.EndTime = MyTime.TimeSpans[rand.Next(0, 23)];
             if (reservation.RoomId % 3 == 0)
@@ -74,7 +74,7 @@ namespace InOne.Reservation.Tester
         private static BookingFurniture CreateBookingFurniture(this BookingFurniture resfur)
         {
             resfur.FurnitureId = rand.Next(1, 19);
-            resfur.BookingId = rand.Next(5, 50);
+            resfur.BookingId = rand.Next(1, 49);
             resfur.Count = rand.Next(1, 10);
             return resfur;
         }
@@ -89,8 +89,8 @@ namespace InOne.Reservation.Tester
         }
         private static UserBooking CreateUserBooking(this UserBooking userFur)
         {
-            userFur.UserId = rand.Next(104,200);
-            userFur.BookingId = rand.Next(100,150);
+            userFur.UserId = rand.Next(1,99);
+            userFur.BookingId = rand.Next(1,49);
             return userFur;
         }
         public static void AddRandomUserBookings(this ApplicationContext context, int count)
@@ -104,7 +104,7 @@ namespace InOne.Reservation.Tester
         }
         private static RoomFurniture CreateRoomFurniture(this RoomFurniture roomfur)
         {
-            roomfur.RoomId = rand.Next(1, 100);
+            roomfur.RoomId = rand.Next(1, 99);
             roomfur.FurnitureId = rand.Next(1, 19);
             roomfur.Count = rand.Next(0, 10);
             return roomfur;

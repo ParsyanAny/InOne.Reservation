@@ -1,11 +1,11 @@
-﻿using InOne.Reservation.Repository;
+﻿using InOne.Reservation.Repository.Repositories;
 using InOne.Reservation.Repository.Interfaces;
-using InOne.Reservation.Repository.Models;
+using InOne.Reservation.Models;
 using InOne.Reservation.Tester;
-using Mic.EFC.Repository.Impl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using InOne.Reservation.DataAccess;
 
 namespace InOne.Reservation
 {
@@ -16,63 +16,65 @@ namespace InOne.Reservation
         {
             ApplicationContext context = new ApplicationContext();
             IUnitOfWork unit = new UnitOfWork(context);
-            #region Booking Test +
+            //context.PrintFurnitures();
+            #region Booking Test ++
             //var getUserBooks = unit.BookingRepository.GetUserRoomBooks();
             //getUserBooks.PrintUserRoomBook();
             //var searchBy = unit.BookingRepository.SearchBookingBy("N");
             //searchBy.PrintBookings();
             //var res = unit.BookingRepository.SearchBookingBy( "A", 180).ToArray(); +++
 
-            //context.AddRandomBooking(20);
+            //context.AddRandomBooking(30);
             //context.SaveChanges();
             //context.PrintBookings();
             #endregion
 
-            #region BookingFurniture Test +
+            #region BookingFurniture Test ++
             //context.AddRandomBookingFurnitures(10);
             //context.SaveChanges();
             //context.PrintBookingFurnitures();
             #endregion
 
-            #region Furniture Test +
-            //context.Furnitures.Add(new Furniture { TypeName = "Bed", Price = 12.2});
-            //context.Furnitures.Add(new Furniture { TypeName = "Table", Price = 10});
-            //context.Furnitures.Add(new Furniture { TypeName = "TV", Price = 20.35});
-            //context.Furnitures.Add(new Furniture { TypeName = "Phone", Price = 8.5});
-            //context.Furnitures.Add(new Furniture { TypeName = "Playstation", Price = 25.99});
-            //context.Furnitures.Add(new Furniture { TypeName = "GameBox", Price = 22.22});
-            //context.Furnitures.Add(new Furniture { TypeName = "Piano", Price = 33.3});
-            //context.Furnitures.Add(new Furniture { TypeName = "Bar", Price = 44.4});
-            //context.Furnitures.Add(new Furniture { TypeName = "Sofa", Price = 15});
-            //context.Furnitures.Add(new Furniture { TypeName = "Big Table", Price = 20});
-            //context.Furnitures.Add(new Furniture { TypeName = "Pen", Price = 0.99});
-            //context.Furnitures.Add(new Furniture { TypeName = "Pencil", Price = 0.99});
-            //context.Furnitures.Add(new Furniture { TypeName = "Chair", Price = 5.99});
-            //context.Furnitures.Add(new Furniture { TypeName = "Matras", Price = 6.99});
-            //context.Furnitures.Add(new Furniture { TypeName = "Couch", Price = 6.5});
-            //context.Furnitures.Add(new Furniture { TypeName = "Armchair", Price = 5.99});
-            //context.Furnitures.Add(new Furniture { TypeName = "Big Bed", Price = 29.99});
-            //context.Furnitures.Add(new Furniture { TypeName = "Violin", Price = 15});
-            //context.Furnitures.Add(new Furniture { TypeName = "Cello", Price = 35.5});
-            //context.Furnitures.Add(new Furniture { TypeName = "Easel", Price = 26.99});
+            #region Furniture Test ++
+            //context.Furnitures.Add(new Furniture { TypeName = "Bed", Price = 12.2m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Table", Price = 10m });
+            //context.Furnitures.Add(new Furniture { TypeName = "TV", Price = 20.35m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Phone", Price = 8.5m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Playstation", Price = 25.99m });
+            //context.Furnitures.Add(new Furniture { TypeName = "GameBox", Price = 22.22m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Piano", Price = 33.3m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Bar", Price = 44.4m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Sofa", Price = 15 });
+            //context.Furnitures.Add(new Furniture { TypeName = "Big Table", Price = 20 });
+            //context.Furnitures.Add(new Furniture { TypeName = "Pen", Price = 0.99m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Pencil", Price = 0.99m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Chair", Price = 5.99m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Matras", Price = 6.99m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Couch", Price = 6.5m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Armchair", Price = 5.99m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Big Bed", Price = 29.99m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Violin", Price = 15 });
+            //context.Furnitures.Add(new Furniture { TypeName = "Cello", Price = 35.5m });
+            //context.Furnitures.Add(new Furniture { TypeName = "Easel", Price = 26.99m });
             //context.SaveChanges();
             //context.PrintFurnitures();
-            #endregion
+            #endregion+
 
-            #region Room Test +
-            //var res = unit.RoomRepository.GetCost( 2);
-            //context.AddRandomRooms(50);
+            #region Room Test ++
+
+            //context.AddRandomRooms(80);
             //context.SaveChanges();
             //context.PrintRooms();
+            //var res = unit.RoomRepository.GetCost( 2);
             #endregion
 
-            #region RoomFurniture Test +
-            //context.AddRandomRoomFurnitures(50);
+            #region RoomFurniture Test ++
+            //context.AddRandomRoomFurnitures(10);
             //context.SaveChanges();
             //context.PrintRoomFurnitures();
             #endregion
 
-            #region User Test +
+            #region User Test ++
             //context.AddRandomUsers(100);
             //context.SaveChanges();
             ////var users = unit.UserRepository.GetUsersWithChar('E');
@@ -90,8 +92,8 @@ namespace InOne.Reservation
             //context.PrintUsers();
             #endregion
 
-            #region UserBooking Test +
-            //context.AddRandomUserBookings(5);
+            #region UserBooking Test ++
+            //context.AddRandomUserBookings(10);
             //context.SaveChanges();
             //context.PrintUserBooking();
             #endregion

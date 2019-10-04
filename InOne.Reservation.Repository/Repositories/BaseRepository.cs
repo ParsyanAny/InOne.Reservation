@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Linq;
-using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using InOne.Reservation.Repository.Interfaces;
+using InOne.Reservation.DataAccess;
 
 namespace InOne.Reservation.Repository.Repositories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity>
         where TEntity : class, new()
     {
-        protected readonly DbContext _context;
-        protected BaseRepository(DbContext dbContext)
+        protected readonly ApplicationContext _context;
+        protected BaseRepository(ApplicationContext context)
         {
-            _context = dbContext;
+            _context = context;
         }
         #region Actions
         public void DeleteById(int id)
@@ -48,7 +48,5 @@ namespace InOne.Reservation.Repository.Repositories
         public void SaveChanges() => _context.SaveChanges();
         public Task SaveChangesAsync()
             => _context.SaveChangesAsync();
-
-        
     }
 }
