@@ -9,35 +9,75 @@ namespace InOne.Reservation.Repository.Repositories
     {
         public RoomRepository(ApplicationContext context) : base(context) { }
 
+        public void AddRoom(RoomModel roomModel)
+        {
+            Room room = new Room()
+            {
+                Id = 0,
+                IsEmpty = roomModel.IsEmpty,
+                Number = roomModel.Number,
+                Price = roomModel.Price,
+                ParentRoomId = roomModel.ParentRoomId,
+                RoomFurnitures = roomModel.Furnitures.Select(p => new RoomFurniture
+                {
+                    Count = p.FurnitureCount,
+                    FurnitureId = p.FurnitureId
+                }).ToList(),
+            };
+            _context.Rooms.Add(room);
+            _context.SaveChanges();
+            Room currentRoom = _context.Rooms.Where(p => p.Number == roomModel.Number).First();
+            roomModel.Id = currentRoom.Id;
+        }
+        public void ChangeRoom(RoomModel model)
+        {
+            var result = _context.Rooms.Find(model.Id);
+            if (result != null)
+            {
+                result.Number = model.Number;
+                result.Price = model.Price;
+                result.IsEmpty = model.IsEmpty;
+                result.ParentRoomId = model.ParentRoomId;
+                result.RoomFurnitures = model.Furnitures.Select(p => new RoomFurniture
+                {
+                    Count = p.FurnitureCount,
+                    FurnitureId = p.FurnitureId
+                }).ToList();
+            }
+        }
         public void DeleteAllRooms()
         => _context.Rooms.RemoveRange(_context.Rooms.AsQueryable());
-
         public Room GetByNumber(int number)
             => _context.Rooms.Where(p => p.Number == number).FirstOrDefault();
-        public double GetCost(int roomID)
+        public decimal GetCost(int roomID)
         {
-            throw new System.Exception();
-            ////var result = from romfur in context.RoomFurnitures
-            ////             join rom in context.Rooms on romfur.RoomId equals rom.Id
-            ////             where rom.Id == roomID
-            ////             join fur in context.Furnitures on romfur.FurnitureId equals fur.FurnitureId
-            ////             group fur by rom into RomFurs
-            ////             select new RoomFurCost
-            ////             {
-            ////                 RoomCost = RomFurs.Key.Price,
-            ////                 FurnituresCost = RomFurs.Select(p => p.Price)
-            ////             };
-            //var result = from rom in _context.Rooms where rom.Id == roomID
-            //             join romfur in _context.RoomFurnitures on rom.Id equals romfur.RoomId
-            //             join fur in _context.Furnitures on romfur.FurnitureId equals fur.FurnitureId
-            //             group fur by rom into RomFurs
-            //             select new RoomFurCost
-            //             {
-            //                 RoomCost = RomFurs.Key.Price,
-            //                 FurnituresCost = RomFurs.Select(p => p.Price)
-            //             };
-            //var ar = result.ToArray();
-            //return result.ToArray().Select(p => p.RoomCost + p.FullFurCost).First();
+            Room currentRoom = _context.Rooms.Find(roomID);
+            var furs = _context.RoomFurnitures.Where(p => p.RoomId == roomID).ToArray();
+            decimal roomCost = currentRoom.Price;
+            decimal furRomCost = (from fur in _context.Furnitures
+                                  join romFur in _context.RoomFurnitures on fur.FurnitureId equals romFur.FurnitureId
+                                  where romFur.RoomId == roomID
+                                  select fur.Price * romFur.Count).Sum();
+
+            return roomCost + furRomCost;
+        }
+        public RoomModel[] GetRooms()
+        {
+            RoomModel[] roomModels = _context.Rooms.Select(p => new RoomModel
+            {
+                Id = p.Id,
+                Number = p.Number,
+                IsEmpty = p.IsEmpty,
+                Price = p.Price,
+                ParentRoomId = p.ParentRoomId,
+                Furnitures = p.RoomFurnitures.Select(f => new FurnitureInfo
+                {
+                    FurnitureCount = f.Count,
+                    FurnitureId = f.FurnitureId
+                }).ToList(),
+            }).ToArray();
+
+            return roomModels;
         }
     }
 }

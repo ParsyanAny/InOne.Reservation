@@ -55,8 +55,13 @@
     <Compile Include="PartialModels\Booking.cs" />
     <Compile Include="PartialModels\User.cs" />
     <Compile Include="ProjectModels\BookingModel.cs" />
-    <Compile Include="ProjectModels\RoomFurCost.cs" />
-    <Compile Include="ProjectModels\UserRoomBook.cs" />
+    <Compile Include="ProjectModels\OtherModel\FurnitureInfo.cs" />
+    <Compile Include="ProjectModels\FurnitureModel.cs" />
+    <Compile Include="ProjectModels\OtherModel\RoomFurCost.cs" />
+    <Compile Include="ProjectModels\OtherModel\UserInfo.cs" />
+    <Compile Include="ProjectModels\RoomModel.cs" />
+    <Compile Include="ProjectModels\OtherModel\UserRoomBook.cs" />
+    <Compile Include="ProjectModels\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

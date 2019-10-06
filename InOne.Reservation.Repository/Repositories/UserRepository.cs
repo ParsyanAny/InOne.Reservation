@@ -21,16 +21,16 @@ namespace InOne.Reservation.Repository.Repositories
 
         public void ChangeName(string Name, string Surname, int id)
         {
-                var result = _context.Users.SingleOrDefault(user => user.Id == id);
-                if (result != null)
-                {
-                    result.Name = Name;
-                    result.Surname = Surname;
-                }
+            var result = _context.Users.Find(id);
+            if (result != null)
+            {
+                result.Name = Name;
+                result.Surname = Surname;
+            }
         }
         public void ChangeLogin(string UserName, string Password, int id)
         {
-            var result = _context.Users.SingleOrDefault(user => user.Id == id);
+            var result = _context.Users.Find(id);
             if (result != null)
             {
                 result.UserName = UserName;
@@ -39,16 +39,67 @@ namespace InOne.Reservation.Repository.Repositories
         }
         public void ChangeBalance(decimal Balance, int id)
         {
-            var result = _context.Users.SingleOrDefault(user=> user.Id == id);
+            var result = _context.Users.Find(id);
             if (result != null)
                 result.Balance = Balance;
         }
         public void DeleteAllUsers()
-        => _context.Users.RemoveRange(_context.Set<User>().AsQueryable());
+        => _context.Users.RemoveRange(_context.Users.AsQueryable());
         public IEnumerable<User> GetUsersWithChar(char firstInitial)
         {
             string ini = firstInitial.ToString();
             return _context.Users.Select(p => p).Where(p => p.Name.StartsWith(ini));
+        }
+
+        public void AddUser(UserModel model)
+        {
+            User user = new User()
+            {
+                Id = 0,
+                Name = model.Name,
+                Surname = model.Surname,
+                Balance = model.Balance,
+                BirthYear = model.BirthYear,
+                UserName = model.UserName,
+                Password = model.Password,
+                UserBookings = model.FriendsIds.Select(p => new UserBooking
+                {UserId = p}).ToList()
+            };
+            _context.Users.Add(user);
+            _context.SaveChanges();
+            User currentUser = _context.Users.Where(p => p.UserName == model.UserName).First();
+            model.Id = currentUser.Id;
+        }
+
+        public void ChangeUser(UserModel model)
+        {
+            var result = _context.Users.Find(model.Id);
+            if (result != null)
+            {
+                result.Name = model.Name;
+                result.Surname = model.Surname;
+                result.UserName = model.UserName;
+                result.Password = model.Password;
+                result.Balance = model.Balance;
+                result.BirthYear = model.BirthYear;
+                result.UserBookings = model.FriendsIds.Select(p=> new UserBooking
+                { UserId = p}).ToList();
+            }
+        }
+        public UserModel[] GetUsers()
+        {
+            var userModels = _context.Users.Select(p => new UserModel
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Surname = p.Surname,
+                Balance = p.Balance,
+                BirthYear = p.BirthYear,
+                UserName = p.UserName,
+                Password = p.Password,
+                FriendsIds = p.UserBookings.Select(u => u.UserId).ToList()
+            });
+            return userModels.ToArray();
         }
     }
 }

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using InOne.Reservation.DataAccess;
+using static InOne.Reservation.Models.BookingModel;
 
 namespace InOne.Reservation
 {
@@ -16,7 +17,10 @@ namespace InOne.Reservation
         {
             ApplicationContext context = new ApplicationContext();
             IUnitOfWork unit = new UnitOfWork(context);
-            //context.PrintFurnitures();
+
+            ///var a = unit.RoomRepository.GetCost(1);
+            //Console.WriteLine(a);
+            #region Model Test
             #region Booking Test ++
             //var getUserBooks = unit.BookingRepository.GetUserRoomBooks();
             //getUserBooks.PrintUserRoomBook();
@@ -98,34 +102,91 @@ namespace InOne.Reservation
             //context.PrintUserBooking();
             #endregion
 
-            #region Query
-            //var result = from book in context.Bookings
-            //             join user in context.Users on book.UserId equals user.Id
-            //             join room in context.Rooms on book.RoomId equals room.Id
-            //             join userbok in context.UserBookings on book.BookingId equals userbok.BookingId into userbooks
-            //             join romfur in context.RoomFurnitures on room.Id equals romfur.RoomId
-            //             join fur in context.Furnitures on romfur.FurnitureId equals fur.FurnitureId into Furnitures 
-            //             select new
-            //             {
-            //                 book.BookingId,
-            //                 UserName = user.Name,
-            //                 UserSurName = user.Surname,
-            //                 RoomNumber = room.Number,
-            //                 book.StartTime,
-            //                 book.EndTime,
-            //                 UserCount = userbooks.Count(),
-            //                 Furnitures = Furnitures.Count()
+            #endregion
+            #region QueriesTest
 
-            //                 };
-
+            #region Test UserModel Add,Change,Get
+            Console.WriteLine("1");
+            UserModel[] um = unit.UserRepository.GetUsers();
+            Console.WriteLine("2");
+            Console.WriteLine();
             #endregion
 
+            #region Test FurnitureModel Add, Change, Get
+            //FurnitureModel fm = new FurnitureModel()
+            //{
+            //    Name = "Plazma",
+            //    Price = 100
+            //};
+            //unit.FurnitureRepository.AddFurniture(fm);
+            //context.PrintFurnitures();
+
+            //FurnitureModel fm = new FurnitureModel()
+            //{
+            //    Id = 21,
+            //    Price = 111,
+            //    Name = "Plazma"
+            //};
+            //unit.FurnitureRepository.ChangeFurniture(fm);
+
+            //context.PrintFurnitures();
+            #endregion
+
+            #region Test RoomModel Add,Change,Get
+            //List<FurnitureInfo> furs = new List<FurnitureInfo>() { new FurnitureInfo { FurnitureId = 1, FurnitureCount = 1 } };
+            //RoomModel rm = new RoomModel()
+            //{
+            //    IsEmpty = true,
+            //    Number = 777,
+            //    Price = 77,
+            //    Furnitures = furs,
+            //    //ParentRoomId
+            //};
+            //unit.RoomRepository.AddRoom(rm);
+
+            //List<FurnitureInfo> furs = new List<FurnitureInfo>() { new FurnitureInfo { FurnitureId = 1, FurnitureCount = 1 } };
+            //RoomModel rm = new RoomModel()
+            //{
+            //    Id = 104,
+            //    IsEmpty = false,
+            //    Number = 710,
+            //    Price = 666,
+            //    Furnitures = furs,
+            //    ParentRoomId = 1
+            //};
+            //unit.RoomRepository.ChangeRoom(rm);
+
+            //RoomModel[] rms = unit.RoomRepository.GetRooms();
+
+            //context.PrintRooms();
+            #endregion
+
+            #region Test AddReservation
+            //context.PrintRooms();
+            //List<int> users = new List<int>() { 2 };
+            //List<FurnitureInfo> furs = new List<FurnitureInfo>() { new FurnitureInfo { FurnitureId = 1, FurnitureCount = 1 } };
+            //BookingModel bm = new BookingModel
+            //{
+            //    UserId = 1,
+            //    RoomNumber = 66,
+            //    StartTime = MyTime.TimeSpans[1],
+            //    EndTime = MyTime.TimeSpans[2],
+            //    UsersIds = users,
+            //    Furnitures = furs
+            //};
+            //unit.BookingRepository.AddBooking(bm);
+            //unit.Commit();
+            //context.PrintUsers();
+            //Console.WriteLine($"{bm.RoomNumber} {bm.UserId}");
+            #endregion
+
+            #endregion
             Console.Read();
 
         }
 
 
-        public static IEnumerable<int> GetLengthsOf( string[] words)
+        public static IEnumerable<int> GetLengthsOf(string[] words)
             => words.Select(p => p.Length);
     }
 }
