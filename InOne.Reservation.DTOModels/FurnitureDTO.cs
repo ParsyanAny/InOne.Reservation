@@ -10,7 +10,8 @@ namespace InOne.Reservation.DTOModels
         [MaxLength(50)]
         [Required]
         public string TypeName { get; set; }
-        public decimal Price { get; set; }
+        [Required]
+        public double Price { get; set; }
         public ICollection<BookingFurnitureDTO> BookingFurniture { get; set; }
         public ICollection<RoomFurnitureDTO> RoomFurniture { get; set; }
     }

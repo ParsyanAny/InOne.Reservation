@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,6 +42,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.7.0\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +55,7 @@
   <ItemGroup>
     <Compile Include="IBaseManager`.cs" />
     <Compile Include="IBookingManager.cs" />
+    <Compile Include="IDtoManager.cs" />
     <Compile Include="IFurnitureManager.cs" />
     <Compile Include="IMPL\BaseManager.cs" />
     <Compile Include="IMPL\BookingManager.cs" />
@@ -67,6 +73,10 @@
     <ProjectReference Include="..\InOne.Reservation.DataAccess\InOne.Reservation.DataAccess.csproj">
       <Project>{FEE03212-4B05-4C27-8897-0AECFA05C4A5}</Project>
       <Name>InOne.Reservation.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InOne.Reservation.DTOModels\InOne.Reservation.DTOModels.csproj">
+      <Project>{767a3438-c72a-45d2-bb05-82ce68071815}</Project>
+      <Name>InOne.Reservation.DTOModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\InOne.Reservation.Models\InOne.Reservation.Models.csproj">
       <Project>{F4800A40-382E-4BDE-A2AE-FFDA25F9DBD2}</Project>

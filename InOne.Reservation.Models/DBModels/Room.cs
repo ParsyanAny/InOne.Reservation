@@ -10,7 +10,7 @@ namespace InOne.Reservation.Models
         public int Number { get; set; }
         public bool IsEmpty { get; set; }
         [Required]
-        public decimal Price { get; set; }
+        public double Price { get; set; }
         public Room ParentRoom { get; set; }
         [ForeignKey("ParentRoom")]
         public int? ParentRoomId { get; set; }

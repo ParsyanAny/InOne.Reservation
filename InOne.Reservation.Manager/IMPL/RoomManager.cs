@@ -1,10 +1,11 @@
 ﻿using InOne.Reservation.DataAccess;
+using InOne.Reservation.DTOModels;
 using InOne.Reservation.Models;
 using System.Linq;
 
 namespace InOne.Reservation.Manager.IMPL
 {
-    public class RoomManager : BaseManager<Room>, IRoomManager
+    public class RoomManager : BaseManager<Room, RoomDTO>, IRoomManager
     {
         public RoomManager(ApplicationContext context) : base(context) { }
 
@@ -48,12 +49,12 @@ namespace InOne.Reservation.Manager.IMPL
         => _context.Rooms.RemoveRange(_context.Rooms.AsQueryable());
         public Room GetByNumber(int number)
             => _context.Rooms.Where(p => p.Number == number).FirstOrDefault();
-        public decimal GetCost(int roomID)
+        public double GetCost(int roomID)
         {
             Room currentRoom = _context.Rooms.Find(roomID);
             var furs = _context.RoomFurnitures.Where(p => p.RoomId == roomID).ToArray();
-            decimal roomCost = currentRoom.Price;
-            decimal furRomCost = (from fur in _context.Furnitures
+            double roomCost = currentRoom.Price;
+            double furRomCost = (from fur in _context.Furnitures
                                   join romFur in _context.RoomFurnitures on fur.FurnitureId equals romFur.FurnitureId
                                   where romFur.RoomId == roomID
                                   select fur.Price * romFur.Count).Sum();
@@ -78,5 +79,24 @@ namespace InOne.Reservation.Manager.IMPL
 
             return roomModels;
         }
+
+        public override RoomDTO ModelToDto(Room room)
+            => new RoomDTO
+            {
+                Id = room.Id,
+                Price = room.Price,
+                IsEmpty = room.IsEmpty,
+                Number = room.Number,
+                ParentRoomId = room.ParentRoomId,
+            };
+        public override Room DtoToModel(RoomDTO roomDto)
+            => new Room
+            {
+                Id = roomDto.Id,
+                IsEmpty = roomDto.IsEmpty,
+                Number = roomDto.Number,
+                Price = roomDto.Price,
+                ParentRoomId = roomDto.ParentRoomId
+            };
     }
 }

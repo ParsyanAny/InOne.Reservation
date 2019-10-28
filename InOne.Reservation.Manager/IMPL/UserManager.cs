@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System;
 using InOne.Reservation.DataAccess;
 using InOne.Reservation.Models;
+using InOne.Reservation.DTOModels;
 
 namespace InOne.Reservation.Manager.IMPL
 {
-    public class UserManager : BaseManager<User>, IUserManager
+    public class UserManager : BaseManager<User, UserDTO>, IUserManager
     {
         public UserManager(ApplicationContext context) : base(context) { }
 
@@ -97,5 +98,30 @@ namespace InOne.Reservation.Manager.IMPL
             });
             return userModels.ToArray();
         }
+
+        public override UserDTO ModelToDto(User model)
+            => new UserDTO
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Surname = model.Surname,
+                Balance = model.Balance,
+                BirthYear = model.BirthYear,
+                UserName = model.UserName,
+                Password = model.Password
+
+            };
+        public override User DtoToModel(UserDTO dto)
+            => new User
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                Surname = dto.Surname,
+                BirthYear = dto.BirthYear,
+                Balance = dto.Balance,
+                UserName = dto.UserName,
+                Password = dto.Password
+
+            };
     }
 }

@@ -1,10 +1,11 @@
 ﻿using InOne.Reservation.DataAccess;
+using InOne.Reservation.DTOModels;
 using InOne.Reservation.Models;
 using System.Linq;
 
 namespace InOne.Reservation.Manager.IMPL
 {
-    public class FurnitureManager : BaseManager<Furniture>, IFurnitureManager
+    public class FurnitureManager : BaseManager<Furniture, FurnitureDTO>, IFurnitureManager
     {
         public FurnitureManager(ApplicationContext context) : base(context) { }
 
@@ -43,5 +44,20 @@ namespace InOne.Reservation.Manager.IMPL
             }).ToArray();
             return furnitureModels;
         }
+
+        public override FurnitureDTO ModelToDto(Furniture furniture)
+            => new FurnitureDTO
+            {
+                 FurnitureId = furniture.FurnitureId,
+                 TypeName = furniture.TypeName,
+                 Price = furniture.Price
+            };
+        public override Furniture DtoToModel(FurnitureDTO furnitureDto)
+          => new Furniture
+          {
+              FurnitureId = furnitureDto.FurnitureId,
+              Price = furnitureDto.Price,
+              TypeName = furnitureDto.TypeName,
+          };
     }
 }

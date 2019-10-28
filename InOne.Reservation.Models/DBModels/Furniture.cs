@@ -11,7 +11,8 @@ namespace InOne.Reservation.Models
         [MaxLength(50)]
         [Required]
         public string TypeName { get; set; }
-        public decimal Price { get; set; }
+        [Required]
+        public double Price { get; set; }
         public ICollection<BookingFurniture> BookingFurniture { get; set; }
         public ICollection<RoomFurniture> RoomFurniture { get; set; }
     }

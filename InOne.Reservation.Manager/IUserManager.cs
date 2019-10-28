@@ -1,9 +1,10 @@
-﻿using InOne.Reservation.Models;
+﻿using InOne.Reservation.DTOModels;
+using InOne.Reservation.Models;
 using System.Collections.Generic;
 
 namespace InOne.Reservation.Manager
 {
-    public interface IUserManager : IBaseManager<User>
+    public interface IUserManager : IBaseManager<User, UserDTO>
     {
         void DeleteAllUsers();
         void AddUser(User user);

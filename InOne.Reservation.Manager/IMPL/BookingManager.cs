@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System;
 using InOne.Reservation.DataAccess;
 using static InOne.Reservation.Models.UserRoomBook;
+using InOne.Reservation.DTOModels;
 
 namespace InOne.Reservation.Manager.IMPL
 {
-    public class BookingManager : BaseManager<Booking>, IBookingManager
+    public class BookingManager : BaseManager<Booking, BookingDTO>, IBookingManager
     {
         public BookingManager(ApplicationContext context) : base(context) { }
 
@@ -28,7 +29,7 @@ namespace InOne.Reservation.Manager.IMPL
 
             var furIds = bookingModel.Furnitures.Select(p => p.FurnitureId).ToList();
             var cost = _context.Set<Furniture>().Where(p => furIds.Contains(p.FurnitureId)).Select(p => new { p.Price, p.FurnitureId }).ToArray();
-            decimal furBokCost = (from cos in cost
+            double furBokCost = (from cos in cost
                                   join furId in bookingModel.Furnitures on cos.FurnitureId equals furId.FurnitureId
                                   select cos.Price * furId.FurnitureCount).Sum();
             var furRomCost = (from fur in _context.Set<Furniture>()
@@ -37,9 +38,9 @@ namespace InOne.Reservation.Manager.IMPL
                               where romFur.RoomId == currentRoom.Id
                               select fur.Price * romFur.Count).Sum();
 
-            decimal furFullCost = furBokCost + furRomCost;
+            double furFullCost = furBokCost + furRomCost;
 
-            decimal fullBokCost = currentRoom.Price * (bookingModel.EndTime.Hours - bookingModel.StartTime.Hours) + furFullCost;
+            double fullBokCost = currentRoom.Price * (bookingModel.EndTime.Hours - bookingModel.StartTime.Hours) + furFullCost;
 
             User currentUser = _context.Set<User>().Find(bookingModel.UserId);
             decimal userBalance = _context.Set<User>().Where(p => p.Id == bookingModel.UserId).Select(p => p.Balance).First();
@@ -67,7 +68,30 @@ namespace InOne.Reservation.Manager.IMPL
         }
         public IEnumerable<Booking> SearchBookingBy(string userNameStart)
             => _context.Bookings.Select(p => p).Where(p => p.User.Name.StartsWith(userNameStart)).ToArray();
-        public IEnumerable<Booking> SearchBookingBy(string userNameStart, decimal cost)
+        public IEnumerable<Booking> SearchBookingBy(string userNameStart, double cost)
            => _context.Bookings.Select(p => p).Where(p => p.User.Name.StartsWith(userNameStart) && p.Room.Price == cost).ToArray();
+
+        public override BookingDTO ModelToDto(Booking booking)
+            => new BookingDTO
+            {
+                BookingId = booking.BookingId,
+                Time1 = booking.Time1,
+                Time2 = booking.Time2,
+                RoomId = booking.RoomId,
+                StartTime = booking.StartTime,
+                EndTime = booking.EndTime,
+                UserId = booking.UserId
+            };
+        public override Booking DtoToModel(BookingDTO bookingDTO)
+            => new Booking
+            {
+                BookingId = bookingDTO.BookingId,
+                RoomId = bookingDTO.RoomId,
+                UserId = bookingDTO.UserId,
+                Time1 = bookingDTO.Time1,
+                Time2 = bookingDTO.Time2,
+                StartTime = bookingDTO.StartTime,
+                EndTime = bookingDTO.EndTime
+            };
     }
 }

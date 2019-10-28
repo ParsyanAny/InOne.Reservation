@@ -4,10 +4,9 @@ using System.Linq.Expressions;
 
 namespace InOne.Reservation.Manager
 {
-    public interface IBaseManager<TModel>
+    public interface IBaseManager<TModel, TDto> : IDtoManager<TModel, TDto>
     {
         bool Any(Expression<Func<TModel, bool>> predicate);
-        void Add(TModel model);
         void Delete(TModel model);
         void DeleteById(int Id);
         void DeleteRange(IEnumerable<TModel> models);
