@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F4800A40-382E-4BDE-A2AE-FFDA25F9DBD2}</ProjectGuid>
+    <ProjectGuid>{767A3438-C72A-45D2-BB05-82CE68071815}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InOne.Reservation.Models</RootNamespace>
-    <AssemblyName>InOne.Reservation.Models</AssemblyName>
+    <RootNamespace>InOne.Reservation.DTOModels</RootNamespace>
+    <AssemblyName>InOne.Reservation.DTOModels</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,12 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SqlClient, Version=4.6.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SqlClient.4.7.0\lib\net461\System.Data.SqlClient.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,24 +51,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBModels\Booking.cs" />
-    <Compile Include="DBModels\BookingFurniture.cs" />
-    <Compile Include="DBModels\Furniture.cs" />
-    <Compile Include="DBModels\Room.cs" />
-    <Compile Include="DBModels\RoomFurniture.cs" />
-    <Compile Include="DBModels\User.cs" />
-    <Compile Include="DBModels\UserBooking.cs" />
-    <Compile Include="ProjectModels\BookingModel.cs" />
-    <Compile Include="ProjectModels\OtherModel\FurnitureInfo.cs" />
-    <Compile Include="ProjectModels\FurnitureModel.cs" />
-    <Compile Include="ProjectModels\OtherModel\RoomFurCost.cs" />
-    <Compile Include="ProjectModels\OtherModel\UserInfo.cs" />
-    <Compile Include="ProjectModels\RoomModel.cs" />
-    <Compile Include="ProjectModels\OtherModel\UserRoomBook.cs" />
-    <Compile Include="ProjectModels\UserModel.cs" />
+    <Compile Include="BookingDTO.cs" />
+    <Compile Include="BookingFurnitureDTO.cs" />
+    <Compile Include="FurnitureDTO.cs" />
+    <Compile Include="RoomDTO.cs" />
+    <Compile Include="RoomFurnitureDTO.cs" />
+    <Compile Include="UserBookingDTO.cs" />
+    <Compile Include="UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\InOne.Reservation.DataAccess\InOne.Reservation.DataAccess.csproj">
+      <Project>{FEE03212-4B05-4C27-8897-0AECFA05C4A5}</Project>
+      <Name>InOne.Reservation.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InOne.Reservation.Manager\InOne.Reservation.Manager.csproj">
+      <Project>{BE5AD225-02A1-4B3E-953F-25B3978C1357}</Project>
+      <Name>InOne.Reservation.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InOne.Reservation.Models\InOne.Reservation.Models.csproj">
+      <Project>{F4800A40-382E-4BDE-A2AE-FFDA25F9DBD2}</Project>
+      <Name>InOne.Reservation.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
